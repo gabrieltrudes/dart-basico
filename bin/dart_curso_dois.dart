@@ -6,15 +6,26 @@ void main() {
   int diasDesdeColheita = 40;
   bool isMadura = funcEstaMadura(diasDesdeColheita);
 
-  //mostrarMadura("Uva", 40, cor: "roxo");
+  mostrarMadura("Uva", 40, cor: "roxo");
   int quantosDias = funcQuantosDiasMadura(diasDesdeColheita);
   print(quantosDias);
 }
 
-int funcQuantosDiasMadura(int dias) {
-  int diasParaMadura = 30;
-  int quantosDiasFaltam = dias - diasParaMadura;
-  return quantosDiasFaltam;
+class Frutas {
+  String nome;
+  double peso;
+  String cor;
+  String sabor;
+  int diasDesdeColheita;
+  bool? isMadura;
+}
+
+bool funcEstaMadura(int dias) {
+  if (dias >= 30) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 void mostrarMadura(String nome, int dias, {required String cor}) {
@@ -29,10 +40,9 @@ void mostrarMadura(String nome, int dias, {required String cor}) {
   }
 }
 
-bool funcEstaMadura(int dias) {
-  if (dias >= 30) {
-    return true;
-  } else {
-    return false;
-  }
+int funcQuantosDiasMadura(int dias) {
+  int diasParaMadura = 30;
+  int quantosDiasFaltam = dias - diasParaMadura;
+  return quantosDiasFaltam;
 }
+
