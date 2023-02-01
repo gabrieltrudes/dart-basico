@@ -3,23 +3,25 @@ void main() {
   double peso = 100.2;
   String cor = "Verde e Amarela";
   String sabor = "Doce e cítrica";
-  int diasDesdeColheita = 40;
-  bool isMadura = funcEstaMadura(diasDesdeColheita);
+  int diasDesdeColheita = 25;
+  bool isMadura;
 
-  mostrarMadura("Uva", 40, cor: "roxo");
-  int quantosDias = funcQuantosDiasMadura(diasDesdeColheita);
-  print(quantosDias);
+  if(diasDesdeColheita >= 30) {
+    isMadura = true;
+  } else {
+    isMadura = false;
+  }
+
+  //instanciando classes
+  //observe que a propriedade isMadura é {opcional} no construtor
+  Fruta fruta01 = Fruta(nome, peso, cor, sabor, diasDesdeColheita);
+  Fruta fruta02 = Fruta("Uva", 40, "Roxa", "Doce", 20);
+
+  fruta01.estaMadura(15);
+  fruta02.estaMadura(60);
 }
 
-class Frutas {
-  String nome;
-  double peso;
-  String cor;
-  String sabor;
-  int diasDesdeColheita;
-  bool? isMadura;
-}
-
+//funções
 bool funcEstaMadura(int dias) {
   if (dias >= 30) {
     return true;
@@ -44,5 +46,26 @@ int funcQuantosDiasMadura(int dias) {
   int diasParaMadura = 30;
   int quantosDiasFaltam = dias - diasParaMadura;
   return quantosDiasFaltam;
+}
+
+// classes em dart e construtores
+class Fruta {
+  String nome;
+  double peso;
+  String cor;
+  String sabor;
+  int diasDesdeColheita;
+  bool? isMadura;
+
+  Fruta(this.nome, this.peso, this.cor, this.sabor, this.diasDesdeColheita,
+      {this.isMadura});
+
+  //funções dentro de uma classe são métodos
+  estaMadura(int diasParaMadura) {
+    isMadura = diasDesdeColheita >= diasParaMadura;
+    print("A sua $nome foi colhida à $diasDesdeColheita dias, "
+        "e precisa de $diasParaMadura para poder comer. "
+        "Ela está madura? $isMadura");
+  }
 }
 
