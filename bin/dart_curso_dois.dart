@@ -29,6 +29,9 @@ void main() {
 
   mandioca.cozinhar();
   limao.fazerSuco();
+
+  banana.separarIngredientes();
+  macadamia.fazerMassa();
 }
 
 //funções
@@ -59,7 +62,7 @@ int funcQuantosDiasMadura(int dias) {
 }
 
 // classes em dart e construtores
-class Fruta extends Alimento {
+class Fruta extends Alimento implements Bolo {
   String sabor;
   int diasDesdeColheita;
   bool? isMadura;
@@ -80,6 +83,21 @@ class Fruta extends Alimento {
   void fazerSuco() {
     print('Você fez um ótimo suco de $nome');
   }
+
+  @override
+  void assar() {
+    print('Colocar no forno');
+  }
+
+  @override
+  void fazerMassa() {
+    print('Misturar a fruta com farinha, açúcar, ovos, etc...');
+  }
+
+  @override
+  void separarIngredientes() {
+    print('Pegar a $nome');
+  }
 }
 
 class Alimento {
@@ -94,7 +112,7 @@ class Alimento {
   }
 }
 
-class Legumes extends Alimento {
+class Legumes extends Alimento implements Bolo {
   bool isPrecisaCozinhar;
 
   Legumes(String nome, double peso, String cor, this.isPrecisaCozinhar)
@@ -106,6 +124,21 @@ class Legumes extends Alimento {
     } else {
       print('Nem precisa cozinhar!');
     }
+  }
+
+  @override
+  void assar() {
+    // Colocar mais tempo
+  }
+
+  @override
+  void fazerMassa() {
+    // Fazer uma papa com o legume
+  }
+
+  @override
+  void separarIngredientes() {
+    // Ver se o alimento está cozido ou cru
   }
 }
 
@@ -125,10 +158,26 @@ class Citricas extends Fruta {
   }
 }
 
+//classe nozes herda de fruta onde já está implementando a classe abstrata bolo, então não é necessário a anotação implements novamente
 class Nozes extends Fruta {
   double porcentagemOleoNatural;
 
   Nozes(String nome, double peso, String cor, String sabor,
       int diasDesdeColheita, this.porcentagemOleoNatural)
       : super(nome, peso, cor, sabor, diasDesdeColheita);
+
+  @override
+  void fazerMassa() {
+    print('Tirar a casca');
+    super.fazerMassa();
+  }
+}
+
+//como uma classe abstrata funciona em dart
+abstract class Bolo {
+  void separarIngredientes();
+
+  void fazerMassa();
+
+  void assar();
 }
