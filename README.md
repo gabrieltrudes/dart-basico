@@ -1,2 +1,1 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+Aplicando conceitos básicos de orientação à objeto na linguagem de programação Dart.
